@@ -6,18 +6,24 @@ public class Command {
 	protected EnvironmentVariable envs;
 	
 	public Command(EnvironmentVariable envs) {
-		this.envs = envs;
+		/* TODO: Save EV instance to envs. */
+		
+		/* Write your code. */
 	}
 	
 	protected String get_env(String arg) {
-		return envs.get_value(arg.substring(1));
+		/* TODO: Return a value in EV. */
+		
+		/* Write your code. */
 	}
 	
 	protected boolean is_env(String arg) {
-		if (arg.isEmpty())
-			return false;
+		/* 
+		 * TODO: Check the argument is Environment Variable. 
+		 * 		 If the argument is empty, return false. 
+		 */
 		
-		return arg.startsWith("$");
+		/* Write your code. */
 	}
 	
 	public void execute(String[] args) {
