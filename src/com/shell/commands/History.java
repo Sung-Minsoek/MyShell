@@ -23,10 +23,7 @@ public class History extends Command {
 	}
 	
 	private void print_n_history(int n) {
-		if (n > this.log.size())
-			n = this.log.size();
-		
-		for (int i = 0; i < n; i++)
+		for (int i = n; i < this.log.size(); i++)
 			System.out.printf("%4d\t%s\n", i, log.get(i));
 	}
 	

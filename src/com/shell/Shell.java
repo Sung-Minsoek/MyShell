@@ -24,6 +24,9 @@ public class Shell {
 START:	while(true) {
 			System.out.print("$> ");
 			String input = sc.nextLine();
+
+            if (input.compareTo("") == 0)
+                continue START;
 			
 			Parser parser = new Parser(input);
 			parser.parsing();
