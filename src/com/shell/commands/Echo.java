@@ -9,9 +9,10 @@ public class Echo extends Command{
 		super(envs);
 	}
 	
-	private void do_redirection(String output, String target) {
+	private void do_redirection(String output, String target, boolean isAppend) {
 		try {
-			super.FileWrite(output, target);
+			output += "\n";
+			super.FileWrite(output, target, isAppend);
 		}
 		
 		catch (Exception e) {
@@ -29,13 +30,17 @@ public class Echo extends Command{
 				args[i] = super.get_env(args[i]);
 			
 			if (args[i].equals(">")) {
-				do_redirection(output, args[i + 1]);
+				do_redirection(output.trim(), args[i + 1], false);
+				return;
+			}
+			
+			if (args[i].equals(">>")) {
+				do_redirection(output.trim(), args[i + 1], true);
 				return;
 			}
 			
 			output += (args[i] + " ");
-			//System.out.print(args[i]+" ");
 		}
-		System.out.println(output);
+		System.out.println(output.trim());
 	}
 }

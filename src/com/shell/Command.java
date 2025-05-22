@@ -29,12 +29,12 @@ public class Command implements FileManager {
 	}
 
 	@Override
-	public void FileWrite(String input, String fileName) throws Exception {
+	public void FileWrite(String input, String fileName,boolean isAppend) throws Exception {
 		String filePath = home + "/" + fileName;		
 		
 		try {
 			File file = new File(filePath);
-			FileWriter fw = new FileWriter(file);
+			FileWriter fw = new FileWriter(file, isAppend);
 			
 			fw.write(input);
 			fw.close();
