@@ -9,14 +9,33 @@ public class Echo extends Command{
 		super(envs);
 	}
 	
+	private void do_redirection(String output, String target) {
+		try {
+			super.FileWrite(output, target);
+		}
+		
+		catch (Exception e) {
+			System.out.printf("Fail to redirect to %s\n", target);
+			return;
+		}
+	}
+	
 	@Override
 	public void execute(String[] args) {
+		String output = "";
+		
 		for (int i = 1; i < args.length; i++) {
 			if (super.is_env(args[i]))
 				args[i] = super.get_env(args[i]);
 			
-			System.out.print(args[i]+" ");
+			if (args[i].equals(">")) {
+				do_redirection(output, args[i + 1]);
+				return;
+			}
+			
+			output += (args[i] + " ");
+			//System.out.print(args[i]+" ");
 		}
-		System.out.println("");
+		System.out.println(output);
 	}
 }
