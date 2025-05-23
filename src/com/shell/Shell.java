@@ -39,7 +39,14 @@ START:	while(true) {
 				String cmdString = cmd.getClass().getSimpleName().toLowerCase();
 				
 				if (cmdString.equals(parser.get_command())) {
-					cmd.execute(parser.get_arguments());
+					try {
+						cmd.execute(parser.get_arguments());
+					}
+					
+					catch (Exception e) {
+						System.out.printf("Shell: Fail to execute %s\n", cmdString);
+					}
+						
 					continue START;
 				}
 			}

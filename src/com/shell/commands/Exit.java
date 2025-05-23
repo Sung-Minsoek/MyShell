@@ -9,7 +9,7 @@ public class Exit extends Command{
 	}
 
 	@Override
-	public void execute(String[] args) {
+	public void execute(String[] args) throws Exception {
 		System.out.println("Shell Exited...");
 		System.exit(0);
 	}

@@ -24,7 +24,7 @@ public class Command implements FileManager {
 		return arg.startsWith("$");
 	}
 	
-	public void execute(String[] args) {
+	public void execute(String[] args) throws Exception {
 		return;
 	}
 

@@ -15,13 +15,13 @@ public class Echo extends Command{
 		}
 		
 		catch (Exception e) {
-			System.out.printf("Fail to redirect to %s\n", target);
+			System.out.printf("Shell: Fail to redirect to %s\n", target);
 			return;
 		}
 	}
 	
 	@Override
-	public void execute(String[] args) {
+	public void execute(String[] args) throws Exception {
 		String output = "";
 		
 		for (int i = 1; i < args.length; i++) {
