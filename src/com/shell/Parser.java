@@ -9,13 +9,12 @@ public class Parser {
 	
 	public Parser(String input) {
 		
-		/*
-		 *	TODO: Implement parser constructor.
-		 *		1.	Check the input line whether define EV and save to isEnv.
-		 *		2.	Save input line to commandInput.
-		 */
-		
-		/* Write your code. */
+		if ((!input.contains(" ")) && (input.contains("=")))
+			isEnv = 1;
+		else
+			isEnv = 0;
+
+			commandInput = input;
 	}
 
 	public String get_commandInput() {
@@ -31,9 +30,7 @@ public class Parser {
 	}
 	
 	public int nr_args() {
-		/* TODO: Return the number of tokens. */
-		
-		/* Write your code. */
+		return this.args.length;
 	}
 	
 	public int is_env() {
@@ -41,11 +38,12 @@ public class Parser {
 	}
 	
 	public void parsing() {
-		/* 
-		 * TODO: Tokenize with " " or "=". Then save to args and first arg 
-		 * 		 to command field. 
-		 */
+		String del = " ";
 		
-		/* Write your code. */
+		if (isEnv > 0)
+			del = "=";
+		
+		args = this.commandInput.split(del);
+		command = args[0];
 	}
 }

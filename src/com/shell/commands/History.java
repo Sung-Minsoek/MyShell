@@ -8,11 +8,41 @@ import java.util.ArrayList;
 public class History extends Command {
 	private ArrayList<String> log;
 	
-	/*
-	 * TODO: Print the user's past input. If a number is entered as the argument, Print in the 
-	 * 		 latest order up to that number.
-	 * 		 You Must Use execute() Method!!
-	 */
+	public History(EnvironmentVariable envs) {
+		super(envs);
+        log = new ArrayList<String>(); 
+    }
 	
-	/* Write your code. */
+	public void add_history(String commandInput) {
+		log.add(commandInput);
+	}
+	
+	private void print_all_history() {
+		for (int i = 0; i < this.log.size(); i++)
+			System.out.printf("%4d\t%s\n", i, log.get(i));
+	}
+	
+	private void print_n_history(int n) {
+		for (int i = this.log.size() - 3; i < this.log.size(); i++)
+			System.out.printf("%4d\t%s\n", i, log.get(i));
+	}
+	
+	@Override
+	public void execute(String[] args) {
+		String n = "";
+		
+		if (args.length > 1) {
+			if (super.is_env(args[1]))
+				n = super.get_env(args[1]);
+			else
+				n = args[1];
+		}
+			
+		if (n.isEmpty())
+			this.print_all_history();
+		else
+			this.print_n_history(Integer.parseInt(n));
+		
+		return;
+	}
 }

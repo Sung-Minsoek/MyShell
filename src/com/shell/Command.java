@@ -1,32 +1,73 @@
 package com.shell;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileReader;
+
 import com.shell.env.*;
 
-public class Command {
+public class Command implements FileManager {
 	protected EnvironmentVariable envs;
 	
 	public Command(EnvironmentVariable envs) {
-		/* TODO: Save EV instance to envs. */
-		
-		/* Write your code. */
+		this.envs = envs;
 	}
 	
 	protected String get_env(String arg) {
-		/* TODO: Return a value in EV. */
-		
-		/* Write your code. */
+		return envs.get_value(arg.substring(1));
 	}
 	
 	protected boolean is_env(String arg) {
-		/* 
-		 * TODO: Check the argument is Environment Variable. 
-		 * 		 If the argument is empty, return false. 
-		 */
+		if (arg.isEmpty())
+			return false;
 		
-		/* Write your code. */
+		return arg.startsWith("$");
 	}
 	
 	public void execute(String[] args) {
 		return;
+	}
+
+	@Override
+	public void FileWrite(String input, String fileName,boolean isAppend) throws Exception {
+		String filePath = home + "/" + fileName;		
+		
+		try {
+			File file = new File(filePath);
+			FileWriter fw = new FileWriter(file, isAppend);
+			
+			fw.write(input);
+			fw.close();
+		}
+		
+		catch (Exception e) {
+			System.out.println(e);
+			throw e;
+		}
+	}
+
+	@Override
+	public String FileRead(String fileName) throws Exception {
+		String filePath = home + "/" + fileName;
+		String output = "";
+		
+		try {
+			File file = new File(filePath);
+			FileReader fr = new FileReader(file);
+			
+			int i = 0;
+			
+			while((i = fr.read()) != -1) {
+				output += (char) i;
+			}
+			
+			fr.close();
+		} 
+		
+		catch(Exception e) {
+			throw e;
+		}
+		
+		return output;
 	}
 }
