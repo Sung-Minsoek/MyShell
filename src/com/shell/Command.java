@@ -29,14 +29,14 @@ public class Command implements FileManager {
 	}
 
 	@Override
-	public void FileWrite(String input, String fileName,boolean isAppend) throws Exception {
+	public void FileWrite(String value, String fileName,boolean isAppend) throws Exception {
 		String filePath = home + "/" + fileName;		
 		
 		try {
 			File file = new File(filePath);
 			FileWriter fw = new FileWriter(file, isAppend);
 			
-			fw.write(input);
+			fw.write(value);
 			fw.close();
 		}
 		
@@ -49,7 +49,7 @@ public class Command implements FileManager {
 	@Override
 	public String FileRead(String fileName) throws Exception {
 		String filePath = home + "/" + fileName;
-		String output = "";
+		String result = "";
 		
 		try {
 			File file = new File(filePath);
@@ -58,7 +58,7 @@ public class Command implements FileManager {
 			int i = 0;
 			
 			while((i = fr.read()) != -1) {
-				output += (char) i;
+				result += (char) i;
 			}
 			
 			fr.close();
@@ -68,6 +68,6 @@ public class Command implements FileManager {
 			throw e;
 		}
 		
-		return output;
+		return result;
 	}
 }

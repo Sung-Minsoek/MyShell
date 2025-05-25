@@ -1,6 +1,6 @@
 package com.shell.commands;
 
-import java.io.IOException;
+import java.io.FileNotFoundException;
 
 import com.shell.Command;
 import com.shell.env.*;
@@ -23,7 +23,7 @@ public class Cat extends Command{
 				fileContent = super.FileRead(args[i]);
 			}
 			
-			catch (IOException e) {
+			catch (FileNotFoundException e) {
 				System.out.printf("Shell: File not found %s\n", args[i]);
 				return;
 			}
